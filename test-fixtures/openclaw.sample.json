@@ -1,0 +1,9 @@
+{
+  "providers": {
+    "claude": { "apiKey": "sk-ant-test", "model": "claude-sonnet-4-6" },
+    "openai": { "apiKey": "sk-test", "model": "gpt-4o" },
+    "ollama": { "baseUrl": "http://localhost:11434", "model": "llama3" }
+  },
+  "activeProvider": "claude",
+  "systemPrompt": "You are TARS."
+}

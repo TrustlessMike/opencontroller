@@ -1,0 +1,12 @@
+node_modules
+out
+dist
+.DS_Store
+*.log
+.env
+.env.local
+test-results
+playwright-report
+blob-report
+e2e/.user-data
+e2e/.user-data-*

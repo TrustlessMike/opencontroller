@@ -1,0 +1,21 @@
+{
+  "gateway": {
+    "port": 19001,
+    "auth": { "token": "abc123" }
+  },
+  "channels": {
+    "telegram": { "token": { "source": "env", "id": "TELEGRAM_BOT_TOKEN" } },
+    "discord": { "token": { "source": "env", "id": "DISCORD_BOT_TOKEN" } }
+  },
+  "models": {
+    "providers": {
+      "anthropic": { "apiKey": "${ANTHROPIC_API_KEY}", "model": "claude-opus-4.6" },
+      "openai": { "apiKey": "${OPENAI_API_KEY}", "model": "gpt-4o" }
+    }
+  },
+  "agents": {
+    "defaults": {
+      "model": { "primary": "anthropic/claude-opus-4.6" }
+    }
+  }
+}

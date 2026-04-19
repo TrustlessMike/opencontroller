@@ -1,0 +1,44 @@
+{
+  "name": "opencontroller",
+  "version": "0.1.0",
+  "description": "Ambient desktop “computer” shell (summonable, multi-model) with local OpenClaw + Hermes Agent import",
+  "main": "out/main/index.js",
+  "author": "Cortana Solutions",
+  "license": "UNLICENSED",
+  "private": true,
+  "scripts": {
+    "dev": "electron-vite dev",
+    "build": "electron-vite build",
+    "typecheck": "tsc --noEmit",
+    "test:e2e": "npm run build && playwright test",
+    "start": "electron-vite preview",
+    "package:mac-arm": "npm run build && electron-builder --mac --arm64",
+    "package:mac-universal": "npm run build && electron-builder --mac --universal",
+    "package:mac-unsigned": "npm run build && electron-builder --mac --arm64 -c.mac.identity=null"
+  },
+  "dependencies": {
+    "@types/js-yaml": "^4.0.9",
+    "electron-store": "^8.2.0",
+    "electron-updater": "^6.1.7",
+    "js-yaml": "^4.1.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@electron-toolkit/preload": "^3.0.0",
+    "@electron-toolkit/utils": "^3.0.0",
+    "@playwright/test": "^1.59.1",
+    "@types/node": "^20.11.0",
+    "@types/react": "^18.2.48",
+    "@types/react-dom": "^18.2.18",
+    "@vitejs/plugin-react": "^4.2.1",
+    "autoprefixer": "^10.4.17",
+    "electron": "^28.2.0",
+    "electron-builder": "^24.9.1",
+    "electron-vite": "^2.0.0",
+    "postcss": "^8.4.33",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5.3.3",
+    "vite": "^5.0.12"
+  }
+}

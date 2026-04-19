@@ -1,0 +1,111 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  color: #e7e7ea;
+  background: transparent;
+  -webkit-font-smoothing: antialiased;
+}
+
+.drag-region {
+  -webkit-app-region: drag;
+}
+
+.no-drag {
+  -webkit-app-region: no-drag;
+}
+
+/* Frameless windows: only the title strip should be draggable; everything else must opt out
+   or clicks (including buttons) won’t fire reliably on macOS. */
+.main-shell {
+  -webkit-app-region: no-drag;
+}
+
+.glass {
+  background: rgba(20, 20, 24, 0.55);
+  backdrop-filter: saturate(140%) blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.import-wizard {
+  background:
+    radial-gradient(ellipse 120% 80% at 50% -20%, rgba(45, 212, 191, 0.12), transparent 55%),
+    radial-gradient(ellipse 90% 60% at 100% 50%, rgba(34, 211, 238, 0.06), transparent 50%),
+    radial-gradient(ellipse 90% 60% at 0% 80%, rgba(52, 211, 153, 0.05), transparent 45%);
+}
+
+.chat-panel {
+  background:
+    radial-gradient(ellipse 100% 80% at 50% 0%, rgba(99, 102, 241, 0.08), transparent 50%),
+    radial-gradient(ellipse 80% 50% at 100% 100%, rgba(52, 211, 153, 0.05), transparent 45%),
+    linear-gradient(180deg, rgba(12, 12, 14, 0.35) 0%, rgba(12, 12, 14, 0.2) 100%);
+}
+
+@keyframes chat-dots {
+  0%,
+  80%,
+  100% {
+    opacity: 0.25;
+    transform: translateY(0);
+  }
+  40% {
+    opacity: 1;
+    transform: translateY(-2px);
+  }
+}
+
+.chat-dot {
+  animation: chat-dots 1.2s ease-in-out infinite;
+}
+.chat-dot:nth-child(2) {
+  animation-delay: 0.15s;
+}
+.chat-dot:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+/* Subtle scrollbars — the default macOS overlay scrollbars disappear too fast
+   in dark glass panels; these stay thin but visible. */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 10px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.12);
+  background-clip: padding-box;
+  border: 2px solid transparent;
+}
+
+/* Message bubbles fade-in when added */
+@keyframes msg-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.msg-in {
+  animation: msg-in 220ms ease-out both;
+}
+
+/* Code / kbd default tweak */
+code,
+kbd {
+  font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Monaco, monospace;
+}

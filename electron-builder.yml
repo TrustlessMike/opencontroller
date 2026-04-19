@@ -1,0 +1,50 @@
+appId: com.cortanasolutions.opencontroller
+productName: opencontroller
+copyright: Copyright © 2026 Cortana Solutions
+
+directories:
+  output: dist
+  buildResources: build
+
+files:
+  - out/**/*
+  - package.json
+  - "!**/node_modules/*/{CHANGELOG.md,README.md,README,readme.md,readme}"
+  - "!**/node_modules/*/{test,__tests__,tests,powered-test,example,examples}"
+  - "!**/.DS_Store"
+
+asarUnpack:
+  - resources/**
+
+mac:
+  target:
+    - target: dmg
+      arch:
+        - arm64
+  category: public.app-category.productivity
+  hardenedRuntime: true
+  gatekeeperAssess: false
+  entitlements: build/entitlements.mac.plist
+  entitlementsInherit: build/entitlements.mac.plist
+  icon: build/icon.icns
+  artifactName: ${productName}-${version}-${arch}.${ext}
+  extendInfo:
+    NSMicrophoneUsageDescription: Used for voice input to the AI assistant.
+    NSCameraUsageDescription: Used for screen/context sharing.
+
+dmg:
+  title: ${productName} ${version}
+  iconSize: 100
+  window:
+    width: 540
+    height: 380
+  contents:
+    - x: 140
+      y: 200
+      type: file
+    - x: 400
+      y: 200
+      type: link
+      path: /Applications
+
+publish: null

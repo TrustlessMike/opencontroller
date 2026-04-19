@@ -1,0 +1,6 @@
+{
+  "providers": {
+    "claude": { "apiKey": "sk-ant-test" }
+  },
+  "activeProvider": "gemini"
+}

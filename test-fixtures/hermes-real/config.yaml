@@ -1,0 +1,10 @@
+model:
+  default: "anthropic/claude-opus-4.6"
+  provider: "openrouter"
+  base_url: "https://openrouter.ai/api/v1"
+personality:
+  name: "TARS"
+  system_prompt: "Dry, helpful, concise."
+tools:
+  - web_search
+  - file_read
