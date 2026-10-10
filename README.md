@@ -1,43 +1,72 @@
-<div align="center">
-
 # OpenController
 
-**GUI Shell for AI Agent CLIs**
+![OpenController — open bracket and command cursor](docs/brand/logo.png)
 
-[![Electron](https://img.shields.io/badge/Electron-35-blue)](https://electronjs.org)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5-blue)](https://typescriptlang.org)
-[![License](https://img.shields.io/badge/License-MIT-green)](https://opensource.org/licenses/MIT)
+**A desktop interface for the OpenClaw and Hermes agent CLIs.**
 
-</div>
+[MIT license](LICENSE) · [Contributing](CONTRIBUTING.md) · [Report a bug](https://github.com/TrustlessMike/opencontroller/issues)
 
-An Electron GUI shell for locally-installed agent binaries. It doesn't re-implement provider routing. It **drives the real `openclaw` and `hermes` CLIs you already have** and gives you better visual feedback about what the agent just did.
+An experimental Electron app that launches locally installed agent CLIs and
+turns their output into a readable conversation. The source includes config
+import, provider selection, sessions, skills and tool-output views.
 
-## Why OpenController?
+## Status
 
-Terminal output from AI agents is a firehose. OpenController turns that into a legible transcript:
+This is a source-build prototype. The previous npm-install instructions did not
+match the repository: use the checkout below. macOS packaging scripts exist;
+Windows and Linux packages are not configured or verified here. The macOS
+packager currently references `build/icon.icns`, which is not included; the
+README artwork is not a replacement for that application icon. No packaged
+release is promised by this README.
 
-- **Provider tracking** — Which provider won, which model it picked
-- **Timing analytics** — How long each turn took
-- **Tool call visualization** — Which tools were called, with what args
-- **Fallback chains** — See when and why models fell back
-- **Keyboard summonable** — Summon and dismiss with a hotkey
+## Run from source
 
-## Quick Start
+Install Node.js 22 LTS and npm, then:
 
-```bash
-# Install
-npm install -g opencontroller
-
-# Launch
-opencontroller
+```sh
+git clone https://github.com/TrustlessMike/opencontroller.git
+cd opencontroller
+npm ci
+npm run dev
 ```
 
-Or download the latest release from the [Releases](https://github.com/TrustlessMike/opencontroller/releases) page.
+OpenClaw or Hermes must be installed and configured separately for real agent
+runs. Their providers may use remote services and incur their own charges.
+OpenController is an independent interface, not an official client of either.
 
-## Architecture
+On first launch the app can import existing configuration from `~/.openclaw`
+or `~/.hermes`. To inspect the interface without importing those settings:
 
-OpenController connects to your existing agent CLIs via their stdio streams. It reads structured output, parses tool calls, and renders them in a rich UI. No API keys required beyond what you already have configured.
+```sh
+OPEN_CONTROLLER_SKIP_OPENCLAW_AUTO_IMPORT=1 npm run dev
+```
+
+Do not commit imported configuration or real credentials. The app executes
+agent processes with the permissions of the account running it.
+
+## Development
+
+```sh
+npm run typecheck
+npm run build
+```
+
+The `e2e/` directory contains Playwright/Electron tests. Review the chosen test
+before running it: `real-roundtrip.spec.ts` is intended for real agent runs.
+
+Useful entry points:
+
+- `src/main/agents/`: OpenClaw and Hermes process adapters.
+- `src/main/import/`: configuration discovery and import.
+- `src/renderer/src/components/`: chat, settings, sessions and skills views.
+- `src/shared/types.ts`: shared data types.
+
+## Where to help
+
+Reproducible CLI compatibility reports, clearer onboarding and packaging work
+are welcome. Keep changes focused and document the environment you tested.
+See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## License
 
-MIT
+[MIT](LICENSE). Third-party tools and dependencies retain their own licenses.

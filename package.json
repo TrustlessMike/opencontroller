@@ -1,10 +1,10 @@
 {
   "name": "opencontroller",
   "version": "0.1.0",
-  "description": "Ambient desktop “computer” shell (summonable, multi-model) with local OpenClaw + Hermes Agent import",
+  "description": "Ambient desktop \u201ccomputer\u201d shell (summonable, multi-model) with local OpenClaw + Hermes Agent import",
   "main": "out/main/index.js",
   "author": "Cortana Solutions",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "private": true,
   "scripts": {
     "dev": "electron-vite dev",
