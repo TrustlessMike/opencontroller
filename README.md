@@ -12,12 +12,10 @@ import, provider selection, sessions, skills and tool-output views.
 
 ## Status
 
-This is a source-build prototype. The previous npm-install instructions did not
-match the repository: use the checkout below. macOS packaging scripts exist;
-Windows and Linux packages are not configured or verified here. The macOS
-packager currently references `build/icon.icns`, which is not included; the
-README artwork is not a replacement for that application icon. No packaged
-release is promised by this README.
+This is a source-build prototype: use the checkout below. An unsigned macOS
+(Apple Silicon) build packages and launches; see [Package for macOS](#package-for-macos).
+Windows and Linux packages are not configured or verified here, and no signed
+or notarized release is published yet.
 
 ## Run from source
 
@@ -50,6 +48,17 @@ agent processes with the permissions of the account running it.
 npm run typecheck
 npm run build
 ```
+
+### Package for macOS
+
+```sh
+npm run package:mac-unsigned
+```
+
+This writes `dist/opencontroller-<version>-arm64.dmg`. The build is not signed or
+notarized, so macOS Gatekeeper will warn on first open; right-click the app and
+choose Open. `package:mac-arm` and `package:mac-universal` expect a Developer ID
+signing identity. The app icon lives in `build/icon.icns`.
 
 The `e2e/` directory contains Playwright/Electron tests. Review the chosen test
 before running it: `real-roundtrip.spec.ts` is intended for real agent runs.
